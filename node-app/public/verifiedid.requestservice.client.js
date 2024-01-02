@@ -111,7 +111,10 @@ function RequestService(onDrawQRCode, onNavigateToDeepLink, onRequestRetrieved, 
                                                          method: 'POST',
                                                          body: base64Image
                                                         });
-        const respJson = await response.json();
+        const respJson = await response.json().catch(async e => {
+            console.log(await response.text().catch(console.error))
+            console.log(e)
+        });
         this.log(respJson);
         if (respJson.error_description) {
             this.onError(this.requestType, respJson.error_description);
