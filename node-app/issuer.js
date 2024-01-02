@@ -56,13 +56,13 @@ if ( mainApp.config["clientName"] ) {
   issuanceConfig.registration.clientName = mainApp.config["clientName"];
 }
 if ( issuanceConfig.registration.clientName.startsWith("...") ) {
-  issuanceConfig.registration.clientName = "Node.js Verified ID sample";
+  issuanceConfig.registration.clientName = "Friend of Findy";
 }
 if ( mainApp.config["purpose"] ) {
   issuanceConfig.registration.purpose = mainApp.config["purpose"];
 }
 if ( issuanceConfig.registration.purpose.startsWith("...") ) {
-  issuanceConfig.registration.purpose = "To issue you with an expert credential";
+  issuanceConfig.registration.purpose = "To show your support to Findynet";
 }
 issuanceConfig.authority = mainApp.config["DidAuthority"]
 issuanceConfig.manifest = mainApp.config["CredentialManifest"]
@@ -131,6 +131,9 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
   if ( null != photo ) {
     console.log( 'Photo set in session state');
   }
+  else {
+    console.log( 'No photo set');
+  }
   
   issuanceConfig.authority = mainApp.config["DidAuthority"]
   issuanceConfig.callback.url = `https://${req.hostname}/api/request-callback`;
@@ -156,11 +159,8 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
 
   // set the claim values - only for idTokenHint attestation
   if ( issuanceConfig.claims ) {
-    if ( issuanceConfig.claims.given_name ) {
-      issuanceConfig.claims.given_name = "Megan";
-    }
-    if ( issuanceConfig.claims.family_name ) {
-      issuanceConfig.claims.family_name = "Bowen";
+    if ( issuanceConfig.claims.number ) {
+      issuanceConfig.claims.number = "1";
     }
     if ( issuanceConfig.claims.photo ) {
       console.log( 'We set a photo claim');
