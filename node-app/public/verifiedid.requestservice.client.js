@@ -106,11 +106,19 @@ function RequestService(onDrawQRCode, onNavigateToDeepLink, onRequestRetrieved, 
 
     this.setUserPhoto = async function (base64Image) {
         this.log('setUserPhoto(): ' + base64Image );
-        const response = await fetch(this.apiSetPhoto, {
-            headers: { 'Accept': 'application/json', 'Content-Type': 'image/jpeg', 'rsid': this.uuid },
-                                                         method: 'POST',
-                                                         body: base64Image
-                                                        });
+        const headers = {
+          'Accept': 'application/json',
+          'Content-Type': 'image/jpeg',
+          'rsid': this.uuid
+        }
+        const fetchOpts = {
+          headers: headers,
+          method: 'POST',
+          body: base64Image
+        }
+        console.log(this.apiSetPhoto, fetchOpts)
+        const response = await fetch(this.apiSetPhoto, fetchOpts);
+
         const respJson = await response.json().catch(async e => {
             console.error(e)
         });

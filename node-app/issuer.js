@@ -97,7 +97,7 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
   if ( req.query.id ) {
     id = req.query.id;
   }
-  console.log( `id: ${id}` );
+  console.log( `Issuance requested, session id: ${id}` );
 
   var photo = null;
   // get the Access Token
@@ -219,6 +219,7 @@ mainApp.app.get('/api/issuer/get-manifest', async (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////////////
 // sets a jpeg photo in the session state
 function setUserPhoto( id, res, body ) {
+  console.log('Got new user photo from browser');
   console.log( body );
   let idx = body.indexOf(";base64,");
   if ( -1 == idx ) {
@@ -241,6 +242,7 @@ function setUserPhoto( id, res, body ) {
         };
         session.sessionData = cacheData;
         console.log( session.sessionData );
+        console.log(`Saved photo to session ${id}`)
         mainApp.sessionStore.set( id, session);
         res.send({"id": id});
       } else {

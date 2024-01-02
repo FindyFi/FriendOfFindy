@@ -78,7 +78,7 @@
 
                 document.getElementById('issue-credential').addEventListener('click', () => {
                     if ( havePhotoClaim ) {
-                        setUserPhoto();
+                        // setUserPhoto();
                         hideShowPhotoElements("none");
                         // make sure the photo is sent to API in backend before we continue
                         setTimeout(requestService.createIssuanceRequest(), 500);

@@ -97,6 +97,7 @@ function uploadImage(e) {
                 canvas.getContext('2d').drawImage(imageObj, 0, 0, imageObj.naturalWidth, imageObj.naturalHeight, 0, 0, canvas.width, canvas.height);
                 document.getElementById("selfie").src = canvas.toDataURL('image/jpeg');
                 document.getElementById("selfie").style.display = "block";
+                setUserPhoto();
             }
         }
     }
