@@ -241,8 +241,8 @@ function setUserPhoto( id, res, body ) {
         };
         session.sessionData = cacheData;
         console.log( session.sessionData );
-        mainApp.sessionStore.set( id, session);  
-        res.send();
+        mainApp.sessionStore.set( id, session);
+        res.send({"id": id});
       } else {
         console.log( `400 - Unknown state: ${id}` );
         res.status(400).json({'error': `Unknown state: ${id}`});      
