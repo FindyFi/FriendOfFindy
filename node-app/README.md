@@ -19,7 +19,7 @@ Welcome to Microsoft Entra Verified ID. In this sample, we'll teach you to issue
 Complete the [setup](#Setup) before deploying to Azure so that you have all the required parameters.
 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FFindyFi%2FFriendsOfFindy%2Fmain%2FARMTemplate%2Ftemplate.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FFindyFi%2FFriendOfFindy%2Fmain%2FARMTemplate%2Ftemplate.json)
 
 You will be asked to enter some parameters during deployment about your app registration and your Verified ID details. You will find these values in the admin portal.
 
@@ -51,8 +51,8 @@ Follow the documentation for how to do [app registeration](https://learn.microso
 To run the sample, clone the repository, compile & run it. It's callback endpoint must be publically reachable, and for that reason, use a tool like `ngrok` as a reverse proxy to reach your app if you're running it on `localhost`.
 
 ```sh
-git clone https://github.com/FindyFi/FriendsOfFindy.git
-cd FriendsOfFindy/node-app
+git clone https://github.com/FindyFi/FriendOfFindy.git
+cd FriendOfFindy/node-app
 npm install
 npm run
 ```
