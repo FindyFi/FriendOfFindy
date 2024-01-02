@@ -4,7 +4,7 @@
     "parameters": {
         "webAppName": {
             "type": "string",
-            "defaultValue": "Friends of Findy",
+            "defaultValue": "FriendOfFindy",
             "minLength": 2,
             "metadata": {
                 "description": "app name."
@@ -15,7 +15,7 @@
             "metadata": {
                 "description": "Github repo URL"
             },
-            "defaultValue": "https://github.com/FindyFi/FriendsOfFindy.git"
+            "defaultValue": "https://github.com/FindyFi/FriendOfFindy.git"
         },
         "branch": {
             "type": "string",
@@ -71,7 +71,7 @@
             "metadata": {
                 "description": "CredentialType"
             },
-            "defaultValue": "VerifiedCredentialExpert"
+            "defaultValue": "FriendOfFindy"
         },
         "PhotoClaimName": {
             "type": "string",
