@@ -15,13 +15,15 @@ if [[ -z $acct ]]; then
     if [[ -z $tenantId ]]; then az login; else az login -t $tenantId; fi
 fi
 
-appName="Verifiable Credentials VC Node sample"
-appShortName="vcnodesample"
+appName="Friend of Findy"
+appShortName="findyfriends"
 
 # get things we need
 echo "Getting things..."
 tenantId=$(az account show --query "tenantId" -o tsv)
 tenantDomainName=$(az ad signed-in-user show --query 'userPrincipalName' -o tsv | cut -d '@' -f 2)
+# echo $tenantId
+# echo $tenantDomainName
 
 # create the app and the sp
 echo "Creating the app and the sp"
@@ -30,10 +32,12 @@ spId=$(az ad sp create --id $appId)
 
 # set the current user as app owner
 echo "Assigning owner"
-userId=$(az ad signed-in-user show --query objectId -o tsv)
+userId=$(az ad signed-in-user show --query id -o tsv)
+# echo $userId
+
 az ad app owner add --id $appId --owner-object-id $userId
 
-clientSecret=""
+certPem=""
 certSubject=""
 certThumbprint=""
 certLocation=""
@@ -41,7 +45,7 @@ certLocation=""
 if [[ $clientCertificate != cert* ]]; then
     # create a client_secret
     echo "Generating client_secret"
-    clientSecret=$(az ad app credential reset --id $appId --credential-description "Default" --query "password" -o tsv)
+    certPem=$(az ad app credential reset --id $appId --create-cert | grep fileWithCertAndPrivateKey | cut -d '"' -f 4)
 else
     echo "Generating self-signed certificate"
     certSubject="CN=$appShortName"
@@ -54,23 +58,25 @@ else
     certThumbprint=$(<./aadappcert.thumbprint)
     certThumbprint=${certThumbprint//[:]/} # remove the : in the thumbprint to make it just 40 hex chars
     echo $certThumbprint
-    az ad app credential reset --id $appId --cert "@~/aadappcert.crt" --append
+    az ad app credential reset --id $appId --cert "@~/aadappcert.crt" --append | grep password | cut -d '"' -f 4
 fi
 
 # add permissions
 echo "Assigning permissions"
 vcsrAppId=$(az ad sp list --display-name "Verifiable Credentials Service Request" --query "[0].appId" -o tsv)
-vcsrPermissionId=$(az ad sp list --display-name "Verifiable Credentials Service Request" --query "[0].appRoles" | grep id | cut -d "\"" -f 4)
+vcsrPermissionId=$(az ad sp list --display-name "Verifiable Credentials Service Request" --query "[0].appRoles" | grep id | cut -d "\"" -f 4 | tail -1)
+echo "az ad app permission add --id $appId --api $vcsrAppId --api-permissions $vcsrPermissionId=Role"
 perm=$(az ad app permission add --id $appId --api $vcsrAppId --api-permissions $vcsrPermissionId=Role)
 
 # updating the sample config file with details of the app we created
-echo "Updating ..\config.json"
-sed -i -e "s/<YOUR-AAD-TENANDID>/$tenantId/g" ../config.json
-sed -i -e "s/<YOUR-AAD-CLIENTID-FOR-KEYVAULT-ACCESS>/$appId/g" ../config.json
-sed -i -e "s/<YOUR-AAD-CLIENTSECRET-FOR-KEYVAULT-ACCESS>/$clientSecret/g" ../config.json
-sed -i -e "s/<YOUR-AAD-CERTNAME>/$certSubject/g" ../config.json
-sed -i -e "s^<YOUR-AAD-CERTLOCATION>^$certLocation^g" ../config.json # alt delimiter as certLocation has / as path delimiter
-sed -i -e "s/<YOUR-AAD-CERTTHUMBPRINT>/$certThumbprint/g" ../config.json
+configFile=node-app/config.json
+echo "Updating $configFile"
+sed -i -e "s/<YOUR-AAD-TENANDID>/$tenantId/g" $configFile
+sed -i -e "s/<YOUR-AAD-CLIENTID-FOR-API-ACCESS>/$appId/g" $configFile
+sed -i -e "s|<YOUR-AAD-CLIENTSECRET-FOR-API-ACCESS>|$clientSecret|g" $configFile
+sed -i -e "s/<YOUR-AAD-CERTNAME>/$certSubject/g" $configFile
+sed -i -e "s^<YOUR-AAD-CERTLOCATION>^$certLocation^g" $configFile # alt delimiter as certLocation has / as path delimiter
+sed -i -e "s/<YOUR-AAD-CERTTHUMBPRINT>/$certThumbprint/g" $configFile
 
 # creating report for the user
 clientPortalUrl="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/$appId"

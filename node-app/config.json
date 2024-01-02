@@ -1,0 +1,15 @@
+{
+    "azTenantId": "39662e39-3e1d-455b-9013-c493ab830fd3",
+    "azClientId": "b93d01b6-9dd8-4e89-b8d2-6545f13ee7ba",
+    "azClientSecret": "J7.8Q~ESqzXau7nek9RnrfbwVGcopYGPOiwjmbB0",
+    "azCertificateName": "",
+    "azCertThumbprint": "",
+    "azCertificatePrivateKeyLocation": "",
+    "CredentialManifest": "https://verifiedid.did.msidentity.com/v1.0/tenants/39662e39-3e1d-455b-9013-c493ab830fd3/verifiableCredentials/contracts/7b448032-45a6-0ea4-d7d8-1d1cab09719c/manifest",
+    "DidAuthority": "did:web:verifiedid.entra.microsoft.com:39662e39-3e1d-455b-9013-c493ab830fd3:0afc3875-fe0b-7b3e-98fa-fa24a9cdab0b",
+    "acceptedIssuers": "did:web:verifiedid.entra.microsoft.com:39662e39-3e1d-455b-9013-c493ab830fd3:0afc3875-fe0b-7b3e-98fa-fa24a9cdab0b",
+    "CredentialType": "FriendOfFindy",
+    "issuancePinCodeLength": 4,
+    "sourcePhotoClaimName": "photo",
+    "matchConfidenceThreshold": 70
+}

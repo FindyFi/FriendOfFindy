@@ -21,30 +21,7 @@ const crypto = require('crypto');
 var uuid = require('uuid');
 
 console.time("startup");
-///////////////////////////////////////////////////////////////////////////////////////
-// config file can come from command line, env var or the default
-var config = {
-  azTenantId : process.env.azTenantId,
-  azClientId : process.env.azClientId,
-  azClientSecret: process.env.azClientSecret,
-  azCertificateName:  process.env.azCertificateName,
-  azCertThumbprint:  process.env.azCertThumbprint,
-  azCertificatePrivateKeyLocation:  process.env.azCertificatePrivateKeyLocation,
-  CredentialManifest: process.env.CredentialManifest,
-  DidAuthority: process.env.DidAuthority,
-  acceptedIssuers: process.env.acceptedIssuers,
-  CredentialType: process.env.CredentialType,
-  issuancePinCodeLength: process.env.issuancePinCodeLength,
-  sourcePhotoClaimName: process.env.photoClaimName,
-  matchConfidenceThreshold: process.env.matchConfidenceThreshold
-};
-var configFile = process.env.CONFIGFILE;
-if ( !configFile ) {
-  var idx = process.argv.findIndex((el) => el == "-c");
-  if ( idx != -1 ) {
-    configFile = process.argv[idx+1];
-  }
-}
+var configFile = './config.json';
 if ( configFile ) {
   config = require( configFile );
 }

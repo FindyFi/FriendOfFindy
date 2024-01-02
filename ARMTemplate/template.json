@@ -4,7 +4,7 @@
     "parameters": {
         "webAppName": {
             "type": "string",
-            "defaultValue": "<App Name>",
+            "defaultValue": "Friends of Findy",
             "minLength": 2,
             "metadata": {
                 "description": "app name."
@@ -15,7 +15,7 @@
             "metadata": {
                 "description": "Github repo URL"
             },
-            "defaultValue": "https://github.com/Azure-Samples/active-directory-verifiable-credentials-node.git"
+            "defaultValue": "https://github.com/FindyFi/FriendsOfFindy.git"
         },
         "branch": {
             "type": "string",
@@ -29,7 +29,7 @@
 			"metadata": {
 				"description": "Github repo subfolder"
 			},
-			"defaultValue": "1-node-api-idtokenhint"
+			"defaultValue": "node-app"
 		},
 		"azTenantId": {
             "type": "string",
@@ -78,7 +78,7 @@
             "metadata": {
               "description": "claim name for photo - if you are using FaceCheck during presentation. Otherwise leave this field blank"
             },
-            "defaultValue": ""
+            "defaultValue": "photo"
         }
     },
     "variables": {

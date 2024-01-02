@@ -4,15 +4,9 @@
       {
         "mapping": [
           {
-            "outputClaim": "firstName",
+            "outputClaim": "number",
             "required": true,
-            "inputClaim": "$.given_name",
-            "indexed": false
-          },
-          {
-            "outputClaim": "lastName",
-            "required": true,
-            "inputClaim": "$.family_name",
+            "inputClaim": "number",
             "indexed": true
           },
           {
@@ -24,12 +18,23 @@
         ],
         "required": true
       }
-    ]
+    ],
+    "selfIssued": {
+      "mapping": [
+        {
+          "outputClaim": "email",
+          "required": true,
+          "inputClaim": "email",
+          "indexed": true
+        }
+      ],
+      "required": false
+    }
   },
   "validityInterval": 2592000,
   "vc": {
     "type": [
-      "VerifiedCredentialExpertFC"
+      "FriendOfFindy"
     ]
   }
 }

@@ -1,0 +1,35 @@
+{
+  "locale": "en-US",
+  "card": {
+    "backgroundColor": "#0d0342",
+    "description": "Show your support for Findynet.",
+    "issuedBy": "Findynet",
+    "textColor": "#4ffaff",
+    "title": "Friend of Findy",
+    "logo": {
+      "description": "Findy logo",
+      "uri": "https://findy.fi/wp-content/uploads/2023/12/newlogo-584x779-1.png"
+    }
+  },
+  "consent": {
+    "instructions": "Sign in with your account to get your card.",
+    "title": "Do you want to get your Verified Credential?"
+  },
+  "claims": [
+    {
+      "claim": "vc.credentialSubject.number",
+      "label": "Friend #",
+      "type": "String"
+    },
+    {
+      "claim": "vc.credentialSubject.email",
+      "label": "E-mail address",
+      "type": "String"
+    },
+    {
+      "claim": "vc.credentialSubject.photo",
+      "label": "User picture",
+      "type": "image/jpg;base64url"
+    }
+  ]
+}
