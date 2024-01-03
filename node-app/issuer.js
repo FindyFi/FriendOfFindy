@@ -21,6 +21,16 @@ var mainApp = require('./app.js');
 
 var parser = bodyParser.urlencoded({ extended: false });
 
+// init DB
+let db = new sqlite3.Database(mainApp.config.dbFile, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log(`Connected to the database ${mainApp.config.dbFile}.`);
+  const create = "CREATE TABLE IF NOT EXISTS seq (num PRIMARY KEY)";
+  db.run(create);
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////
 // Setup the issuance request payload template
 var issuanceConfig = {
@@ -88,6 +98,15 @@ function generatePin( digits ) {
   var min    = max/10; // Math.pow(10, n) basically
   var number = Math.floor( Math.random() * (max - min + 1) ) + min;
   return ("" + number).substring(add); 
+}
+
+async function db_get(query) {
+  return new Promise(function(resolve,reject){
+    db.get(query, function(err,row){
+       if(err){return reject(err);}
+       resolve(row);
+     });
+  });
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -162,25 +181,20 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
 
   // set the claim values - only for idTokenHint attestation
   if ( issuanceConfig.claims ) {
-    if ( issuanceConfig.claims.number ) {
-      let db = new sqlite3.Database(mainApp.config.dbFile, (err) => {
-        if (err) {
-          console.error(err.message);
-        }
-        console.log(`Connected to the database ${mainApp.config.dbFile}.`);
-        const create = "CREATE TABLE IF NOT EXISTS seq (num PRIMARY KEY)";
-        db.run(create);
-        const query = "SELECT seq FROM SQLITE_SEQUENCE WHERE name = 'seq' LIMIT 1;"
-        db.get(query, [], (err, row) => {
-          const insert = `INSERT INTO seq VALUES (${row.seq})`;
-          db.run(insert);
-          issuanceConfig.claims.number = row.seq;
-        });
-      });
-    }
     if ( issuanceConfig.claims.photo ) {
       console.log( 'We set a photo claim');
       issuanceConfig.claims.photo = photo;
+    }
+    if ( issuanceConfig.claims.number ) {
+      const query = "SELECT MAX(num) AS seq FROM seq;"
+      let next = 1
+      const row = await db_get(query)
+      if (row) {
+        next = row.seq + 1
+      }
+      const insert = `INSERT INTO seq (num) VALUES (${next})`;
+      db.run(insert);
+      issuanceConfig.claims.number = next;
     }
     // issuanceConfig.claims.email = "info@findy.fi";
   }
