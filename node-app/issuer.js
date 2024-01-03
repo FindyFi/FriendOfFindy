@@ -15,6 +15,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const https = require('https')
 const url = require('url')
 const { SSL_OP_COOKIE_EXCHANGE } = require('constants');
+const sqlite3 = require('sqlite3').verbose();
 var msal = require('@azure/msal-node');
 var mainApp = require('./app.js');
 
