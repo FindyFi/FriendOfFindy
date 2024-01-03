@@ -1,7 +1,7 @@
 {
-    "azTenantId": "39662e39-3e1d-455b-9013-c493ab830fd3",
-    "azClientId": "b93d01b6-9dd8-4e89-b8d2-6545f13ee7ba",
-    "azClientSecret": "J7.8Q~ESqzXau7nek9RnrfbwVGcopYGPOiwjmbB0",
+    "azTenantId": "<YOUR-TENANT-ID>",
+    "azClientId": "<YOUR-APP-CLIENT-ID>",
+    "azClientSecret": "<YOUR-APP-CLIENT-SECRET>",
     "azCertificateName": "",
     "azCertThumbprint": "",
     "azCertificatePrivateKeyLocation": "",
