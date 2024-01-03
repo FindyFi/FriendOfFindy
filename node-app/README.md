@@ -6,18 +6,17 @@ languages:
 description: "A code sample demonstrating issuance and verification of verifiable credentials."
 urlFragment: "FriendsOfFindy"
 ---
-# Verified ID idTokenHint Sample for node.js
+# Friend of Findy verifiable credential
 
-This code sample demonstrates how to use Microsoft Entra Verified ID to issue and consume verifiable credentials.
+This code sample demonstrates how to use Microsoft Entra Verified ID to issue, present, and verify verifiable credentials.
 
 ## About this sample
 
-Welcome to Microsoft Entra Verified ID. In this sample, we'll teach you to issue your first verifiable credential: a Verified Credential Expert Card. You'll then use this card to prove to a verifier that you are a Verified Credential Expert, mastered in the art of digital credentialing. The sample uses the preview REST API which supports ID Token hints to pass a payload for the verifiable credential.
+This repo is forked from https://github.com/Azure-Samples/active-directory-verifiable-credentials-node and modified to enable issuing and verifying of "Friend Credentials".
 
 ## Deploy to Azure
 
 Complete the [setup](#Setup) before deploying to Azure so that you have all the required parameters.
-
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FFindyFi%2FFriendOfFindy%2Fmain%2FARMTemplate%2Ftemplate.json)
 
