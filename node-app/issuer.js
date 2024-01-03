@@ -36,7 +36,7 @@ var issuanceConfig = {
        "api-key": "...set at runtime..."
     }
   },
-  "type": "ignore-this",
+  "type": "FriendOfFindy",
   "manifest": "...set at runtime..."
 };
 
