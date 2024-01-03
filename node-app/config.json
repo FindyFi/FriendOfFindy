@@ -11,5 +11,6 @@
     "CredentialType": "FriendOfFindy",
     "issuancePinCodeLength": 4,
     "sourcePhotoClaimName": "photo",
-    "matchConfidenceThreshold": 70
+    "matchConfidenceThreshold": 70,
+    "dbFile": "./sequence.db"
 }

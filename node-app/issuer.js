@@ -162,7 +162,20 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
   // set the claim values - only for idTokenHint attestation
   if ( issuanceConfig.claims ) {
     if ( issuanceConfig.claims.number ) {
-      issuanceConfig.claims.number = "1";
+      let db = new sqlite3.Database(mainApp.config.dbFile, (err) => {
+        if (err) {
+          console.error(err.message);
+        }
+        console.log(`Connected to the database ${mainApp.config.dbFile}.`);
+        const create = "CREATE TABLE IF NOT EXISTS seq (num PRIMARY KEY)";
+        db.run(create);
+        const query = "SELECT seq FROM SQLITE_SEQUENCE WHERE name = 'seq' LIMIT 1;"
+        db.get(query, [], (err, row) => {
+          const insert = `INSERT INTO seq VALUES (${row.seq})`;
+          db.run(insert);
+          issuanceConfig.claims.number = row.seq;
+        });
+      });
     }
     if ( issuanceConfig.claims.photo ) {
       console.log( 'We set a photo claim');
