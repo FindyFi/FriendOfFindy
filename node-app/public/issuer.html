@@ -1,23 +1,26 @@
 ﻿<!DOCTYPE html>
-<!-- Copyright (c) Microsoft Corporation. All rights reserved.
-     Licensed under the MIT License. -->
-
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Verifiable Credentials Request API Sample - Issuer</title>
-        <meta name="description" content="Verified Credentials Expert">
-        <meta name="author" content="Microsoft">
+        <title>Get your Friend of Findy Verifiable Credential</title>
+        <meta name="description" content="Show your suppor to Findynet">
+        <meta name="author" content="Findynet">
         <link rel="stylesheet" href="styles.css">
-        <link rel="icon" href="favicon.png">    
+        <link rel="icon" href="favicon.png">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="width">
+        <meta name="theme-color" content="#FFF" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#0d0342" media="(prefers-color-scheme: dark)">
     </head>
-        
+
     <body>
         <div id="wrap">
-            <div style="text-align: center;">
-                <img id="logo" src="VerifiedCredentialExpert-icon.png" height=200px; />
-                <h1 id="idTitle">Verifiable Credential Issuance</h1>
-                <h2 id="idSubTitle"></h2>
+            <a href="/"><img src="https://findy.fi/wp-content/uploads/2023/12/newlogo-584x779-1.png" alt="Findynet" height="240"/></a>
+            <h1>Get credential</h1>
+            <p id="idSubTitle"></p>
+            <p id="idTitle">Get credential</p>
                 <p id="photo-help" style="text-align:left;display:none">
                     This verifiable credential includes a photo claim that you can be used for biometric face check during presentation. You can either take a selfie or upload an existing picture of you before you issue the credential.
                     <br/><br />
@@ -26,7 +29,7 @@
                     <br/><br/>
                     Then click Issue Credential to start the issuance process. When the QR code appears, scan it with your <strong>Microsoft Authenticator</strong> or your <strong>custom wallet</strong> app.
                     <br/><br />
-                    The photo should be a portrait photo of atleast 200x200 pixels. Glasses, masks, hats, headphones, head coverings and face coverings will result in failure in liveness checks during presentations.
+                    The photo should be a portrait photo of at least 200x200 pixels. Glasses, masks, hats, headphones, head coverings and face coverings will result in failure in liveness checks during presentations.
                 </p>
         
             <div id="message-wrapper" class="margin-bottom-75 margin-top-75" style="display:none">
@@ -62,7 +65,8 @@
                     .catch(error => displayMessage(error) )
                     .then(function(message) {
                         var manifest = JSON.parse(message);
-                        document.getElementById('idTitle').innerHTML = "Issuance of " + manifest.display.card.title + " by " + manifest.display.card.issuedBy;
+                        document.getElementById('idTitle').innerHTML = 'Issuing <img id="logo" height="24" align="baseline" /><b>' + 
+                            manifest.display.card.title + "</b> by " + manifest.display.card.issuedBy + ".";
                         document.getElementById('idSubTitle').innerHTML = manifest.display.card.description;
                         document.getElementById('logo').src = manifest.display.card.logo.uri;
                         // if the manifest has a claim with type image/jp[e]g, then we should support adding a photo
@@ -78,13 +82,9 @@
 
                 document.getElementById('issue-credential').addEventListener('click', () => {
                     if ( havePhotoClaim ) {
-                        // setUserPhoto();
                         hideShowPhotoElements("none");
-                        // make sure the photo is sent to API in backend before we continue
-                        setTimeout(requestService.createIssuanceRequest(), 500);
-                    } else {
-                        requestService.createIssuanceRequest();
                     }
+                    requestService.createIssuanceRequest();
                 });
     
                 document.getElementById('take-selfie').addEventListener('click', () => {
@@ -101,8 +101,7 @@
                     uploadImage(e);
                 });
     
-                </script>
-            </div>
+            </script>
         </div>
     </body>
 </html>

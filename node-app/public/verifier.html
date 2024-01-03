@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<!-- Copyright (c) Microsoft Corporation. All rights reserved.
-     Licensed under the MIT License. -->
-
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Verifiable Credentials Request API Sample - Verifier</title>
-        <meta name="description" content="Verified Credentials Expert">
-        <meta name="author" content="Microsoft">
+        <title>Show your Friend of Findy Verifiable Credential</title>
+        <meta name="description" content="Show your suppor to Findynet">
+        <meta name="author" content="Findynet">
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="favicon.png">
-        
-    </head>    
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="width">
+        <meta name="theme-color" content="#FFF" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#0d0342" media="(prefers-color-scheme: dark)">
+    </head>
     <body>
         <div id="wrap">
-            <div style="text-align: center;">
-                <img src="VerifiedCredentialExpert-icon.png" height=200px; />
-                <h1 id="idTitle">Verifiable Credential Presentation</h1>
-                <h2 id="idSubTitle"></h2>
-                <h3 id="idSub3Title"></h3>
-                
-                <div id="message-wrapper" class="margin-bottom-75 margin-top-75" style="display: none">
-                    <i class="fas fa-user-check green icon-text-large margin-bottom-25"></i>
-                    <div id="message"></div>
-                     <br />
-                 </div>
-                  
-                <button type="button" id="verify-credential" class="button">Verify Credential</button>
-                <button type="button" id="check-result" class="button" style="display:none">Check Result</button>
-                <input type="checkbox" id="useFaceCheck" name="useFaceCheck" value="0" style="display:none">
-                <label for="useFaceCheck" id="labelFaceCheck" style="display:none"> Use FaceCheck</label><br>
-                <div id="qrcode" style="text-align:center;display:none"></div>
+            <a href="/"><img src="https://findy.fi/wp-content/uploads/2023/12/newlogo-584x779-1.png" alt="Findynet" height="240"/></a>
+            <h1>Verifiable Credential Presentation</h1>
+            <div id="message-wrapper" class="margin-bottom-75 margin-top-75" style="display: none">
+                <i class="fas fa-user-check green icon-text-large margin-bottom-25"></i>
+                <div id="message"></div>
+                 <br />
+             </div>
+             <p id="idTitle"></p>
+             <p id="idSubTitle" style="display:none;"></p>
+             <button type="button" id="verify-credential" class="button">Verify Credential</button>
+            <button type="button" id="check-result" class="button" style="display:none">Check Result</button>
+            <input type="checkbox" id="useFaceCheck" name="useFaceCheck" value="0" style="display:none">
+            <label for="useFaceCheck" id="labelFaceCheck" style="display:none"> Use FaceCheck</label><br>
+            <div id="qrcode" style="text-align:center;display:none"></div>
 
             <script src="qrcode.min.js"></script>
             <script src="verifiedid.requestservice.client.js"></script>
@@ -56,7 +55,7 @@
                     .catch(error => displayMessage(error) )
                     .then(function(message) {
                         var resp = JSON.parse(message);
-                        document.getElementById('idTitle').innerHTML = "Presentation of " + resp.type;
+                        document.getElementById('idTitle').innerHTML = "Show verifiable credential of type " + resp.type;
                         document.getElementById('idSubTitle').innerHTML = "Accepted issuers: " + resp.acceptedIssuers;
                         if ( resp.sourcePhotoClaimName ) {
                             document.getElementById('useFaceCheck').style.display = "";

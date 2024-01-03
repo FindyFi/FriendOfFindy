@@ -1,25 +1,40 @@
 body {
   font-family: sans-serif;
-  background-color: #E0E0E0;
+  background-color: #0082ff;
+  background: linear-gradient(16deg, #0082ff, #41ebff);
+  color: #0d0342;
+  min-height: 100vh;
 }
 
 #wrap {
   margin: 0 auto;
-  width: 800px;
+  max-width: 55em;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 1em;
 }
 
 .button {
-  background-color: #3B2E58;
+  background: linear-gradient(16deg, #0d0342, #0a00be);
   border: none;
-  color: white;
+  border-radius: 0.5em;
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-block;
+  font-size: larger;
+  font-weight: bold;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  border-radius: 8px;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
+  transition: 0.5s all;
 }
+
+.button:hover {
+  color: rgba(255, 255, 255, 1);
+  transition: 0.125s all;
+}
+
 
 .dark-purple-fill {
   background-color: #3B2E58;
@@ -91,27 +106,45 @@ body {
   font-size: 1.5em;
 }
 
+#photo-help {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 1em;
+  color: #0d0342;
+  padding: 1em;
+}
 /*------*/
 
 table {
-  font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
 table td, table th {
-  border: 1px solid #ddd;
+  background-color: #41ebff;
+  border: 1px solid #0a00be;
+  color: #0d0342;
   padding: 8px;
 }
 
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even){background-color: #0082ff;}
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {background-color: #41ebff;}
 
 table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #0f0f0f;
-  color: white;
+  background-color: #0a00be;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0d0342;
+    background: linear-gradient(16deg, #0d0342, #0a00be);
+    color: #FFF;
+  }
+  .button, .btn {
+    background: linear-gradient(16deg, #0a00be, #0082ff);
+  }
 }

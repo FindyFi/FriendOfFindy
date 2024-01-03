@@ -4,15 +4,21 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Camera in browsers - pixo</title>
-
-    <!-- imports the webpage's stylesheet -->
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>Take a selfie</title>
     <style>
+
         body {
-            font-family: sans-serif;
-            background-color: #E0E0E0;
+          font-family: sans-serif;
+          background-color: #FFF;
+          background: linear-gradient(16deg, #0082ff, #41ebff);
+          color: #0d0342;
+          min-height: 100vh;
+        }
+        @media (prefers-color-scheme: dark) {
+          :root {
+            background-color: #0d0342;
+            color: #FFF;
+          }
         }
 
         #cameraFileInput {
@@ -26,42 +32,42 @@
         }
 
         .btn {
-            display: inline-block;
-            background-color: #3B2E58;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
+          background: linear-gradient(16deg, #0d0342, #0a00be);
+          border: none;
+          border-radius: 0.5em;
+          color: rgba(255, 255, 255, 0.9);
+          cursor: pointer;
+          display: inline-block;
+          font-size: larger;
+          font-weight: bold;
+          padding: 8px 12px;
+          text-align: center;
+          text-decoration: none;
+          transition: 0.5s all;
         }
 
-            .btn:hover {
-                filter: brightness(0.9);
-            }
+        .btn:hover {
+          color: rgba(255, 255, 255, 1);
+          transition: 0.125s all;
+        }
+
     </style>
 
-    <!-- imports the webpage's javascript file -->
-    <!-- <script src="script.js" defer></script> -->
 </head>
 <body>
+    <img src="https://findy.fi/wp-content/uploads/2023/12/newlogo-584x779-1.png" alt="Findynet" height="240"/>
     <h1>Verified ID - Take Selfie</h1>
     <p id="textBefore">Prepare to take a selfie. Stand in good lightning and use your front camera to take a passport like photo of yourself. Click Open camera when ready.</p>
     <p id="textAfter" style="display:none">You can close this app now and continue in the browser.</p>
-
-    <!-- The `label` is attached to the hidden file input -->
-    <label for="cameraFileInput">
-        <span id="btnOpenCamera" class="btn">Open Camera</span>
-
-        <!-- The hidden file `input` for opening the native camera. capture="environment" was the original -->
-        <input id="cameraFileInput"
+    <form>
+        <label for="cameraFileInput">
+            <span id="btnOpenCamera" class="btn">Open Camera</span>
+            <input id="cameraFileInput"
                type="file"
                accept="image/*"
                capture="camera" />
-    </label>
-
-    <!-- displays the picture uploaded from the native camera -->
-    <img id="photo" width="240" height="320" style="display:none" />
+        </label>  
+        <img id="photo" height="320" style="display:none" />
     </form>
 
     <script>

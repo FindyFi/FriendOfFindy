@@ -1,36 +1,25 @@
-<!-- Copyright (c) Microsoft Corporation. All rights reserved.
-     Licensed under the MIT License. -->
-
-     <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Verifiable Credentials Issuance and Verifier Sample</title>
-            <meta name="description" content="Verifiable Credentials Expert">
-            <meta name="author" content="Microsoft">
-            <link rel="stylesheet" href="styles.css">
-            <link rel="icon" href="favicon.png">
-          
-        </head>    
-        <body>
-            <div id="wrap">
-
-                <div style="text-align: center;">
-                    <img src="VerifiedCredentialExpert-icon.png" height=200px; />
-                    <h1>Verifiable Credentials  Issuance and Verifier Sample</h1>
-            
-                    <button type="button" id="idIssue" class="button">Issue Credential</button>
-                    <button type="button" id="idVerify" class="button">Verify Credential</button>
-                    <script>
-                            document.getElementById('idIssue').addEventListener('click', () => {
-                                window.location = "issuer.html";
-                            })
-                            document.getElementById('idVerify').addEventListener('click', () => {
-                                window.location = "verifier.html";
-                            })
-
-                    </script>
-                </div>
-
-            </div>
-        </body>
-    </html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Friend of Findy Verifiable Credential</title>
+        <meta name="description" content="Show your suppor to Findynet">
+        <meta name="author" content="Findynet">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="favicon.png">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="width">
+        <meta name="theme-color" content="#FFF" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#0d0342" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+        <div id="wrap">
+            <img src="https://findy.fi/wp-content/uploads/2023/12/newlogo-584x779-1.png" alt="Findynet" height="240"/>
+            <h1>Friend of Findy Verifiable Credential</h1>
+            <a href="issuer.html" class="button">Get credential</a>
+            <a href="verifier.html" class="button">Show credential</a>
+    </div>
+    </body>
+</html>
