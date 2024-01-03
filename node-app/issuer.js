@@ -194,7 +194,7 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
       }
       const insert = `INSERT INTO seq (num) VALUES (${next})`;
       db.run(insert);
-      issuanceConfig.claims.number = next;
+      issuanceConfig.claims.number = next.toString();
     }
     // issuanceConfig.claims.email = "info@findy.fi";
   }
