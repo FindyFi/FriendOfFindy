@@ -7,7 +7,7 @@ Once you have deployed this sample to Azure AppServices with a working configura
 *Note - FaceCheck is in preview. If you plan to test it, make sure you have the latest Microsoft Authenticator.
 
 ### Create application registration
-Follow the documentation for how to do [app registeration](https://learn.microsoft.com/en-us/entra/verified-id/verifiable-credentials-configure-issuer#configure-the-verifiable-credentials-app) for an app with permission to Verified ID.
+Follow the documentation for how to do [app registration](https://learn.microsoft.com/en-us/entra/verified-id/verifiable-credentials-configure-issuer#configure-the-verifiable-credentials-app) for an app with permission to Verified ID.
 
 ## Setting up and running the sample
 To run the sample, clone the repository, compile & run it. It's callback endpoint must be publically reachable, and for that reason, use a tool like `ngrok` as a reverse proxy to reach your app if you're running it on `localhost`.
