@@ -35,6 +35,11 @@ h1 {
   transition: 0.125s all;
 }
 
+#photo, #selfie {
+  aspect-ratio: auto;
+  max-height: 300px;
+  width: auto;
+}
 
 .dark-purple-fill {
   background-color: #3B2E58;
