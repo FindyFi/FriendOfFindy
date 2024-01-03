@@ -108,3 +108,6 @@ config.[Dd]evelopment.json
 run.[Dd]evelopment.*
 docker-run.[Dd]evelopment.*
 .dev-config/
+
+# SQLite database
+sequence.db
