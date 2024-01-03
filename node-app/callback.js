@@ -122,7 +122,7 @@ mainApp.app.post('/api/request-callback', parser, async (req, res) => {
  */
 mainApp.app.get('/api/request-status', async (req, res) => {
   var id = req.query.id;
-  mainApp.requestTrace( req );
+  // mainApp.requestTrace( req );
   mainApp.sessionStore.get( id, (error, session) => {
     if (session && session.sessionData) {
       console.log(`status: ${session.sessionData.status}, message: ${session.sessionData.message}`);

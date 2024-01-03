@@ -149,6 +149,8 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
     }
   }
   // copy claim names from manifest for idTokenHint - this is a bit extra and you can just set the claims below
+  console.log('claims config:')
+  console.log(mainApp.config["claims"])
   if ( mainApp.config["claims"] ) {
     issuanceConfig.claims = {};
     for (i = 0; i < mainApp.config["claims"].length; i++) {
@@ -166,13 +168,16 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
       console.log( 'We set a photo claim');
       issuanceConfig.claims.photo = photo;
     }
+    if ( issuanceConfig.claims.email ) {
+      issuanceConfig.claims.email = "info@findy.fi";
+    }
   }
+  console.log( issuanceConfig );
 
   // call Verified ID Request Service issuance API
   console.log( 'Request Service API Request' );
   var client_api_request_endpoint = `${mainApp.config.msIdentityHostName}verifiableCredentials/createIssuanceRequest`;
   console.log( client_api_request_endpoint );
-  console.log( issuanceConfig );
 
   var payload = JSON.stringify(issuanceConfig);
   const fetchOptions = {
@@ -220,7 +225,7 @@ mainApp.app.get('/api/issuer/get-manifest', async (req, res) => {
 // sets a jpeg photo in the session state
 function setUserPhoto( id, res, body ) {
   console.log('Got new user photo from browser');
-  console.log( body );
+  // console.log( body );
   let idx = body.indexOf(";base64,");
   if ( -1 == idx ) {
     console.log( `400 - image must be data:image/jpeg;base64` );
@@ -241,7 +246,7 @@ function setUserPhoto( id, res, body ) {
           "photo": photo
         };
         session.sessionData = cacheData;
-        console.log( session.sessionData );
+        // console.log( session.sessionData );
         console.log(`Saved photo to session ${id}`)
         mainApp.sessionStore.set( id, session);
         res.send({"id": id});
