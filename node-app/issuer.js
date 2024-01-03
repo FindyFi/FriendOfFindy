@@ -168,9 +168,7 @@ mainApp.app.get('/api/issuer/issuance-request', async (req, res) => {
       console.log( 'We set a photo claim');
       issuanceConfig.claims.photo = photo;
     }
-    if ( issuanceConfig.claims.email ) {
-      issuanceConfig.claims.email = "info@findy.fi";
-    }
+    issuanceConfig.claims.email = "info@findy.fi";
   }
   console.log( issuanceConfig );
 
