@@ -18,18 +18,7 @@
         ],
         "required": true
       }
-    ],
-    "selfIssued": {
-      "mapping": [
-        {
-          "outputClaim": "email",
-          "required": true,
-          "inputClaim": "email",
-          "indexed": true
-        }
-      ],
-      "required": false
-    }
+    ]
   },
   "validityInterval": 2592000,
   "vc": {
