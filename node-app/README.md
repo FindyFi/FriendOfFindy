@@ -24,7 +24,7 @@ npm run
 2. Select `Get credential`
 3. Send a photo of yourself or take a selfie. Click `Issue Credential`.
 4. In Authenticator, scan the QR code and submit the attached PIN code.
-> If this is the first time you are using Verifiable Credentials the Credentials page with the Scan QR button is hidden. You can use the `Add account` button. Select `other` and scan the QR code, this will enable the preview of Verifiable Credentials in Authenticator.
+> The camera icon can be found in the top right corner of the Authenticator app. If this is the first time you are using Verifiable Credentials the Credentials page with the Scan QR button is hidden. You can use the `Add account` button. Select `other` and scan the QR code, this will enable the preview of Verifiable Credentials in Authenticator.
 5. Select `Add`.
 
 ## Verifying the verifiable credential
