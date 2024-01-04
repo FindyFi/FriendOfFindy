@@ -1,6 +1,6 @@
 # Friend of Findy sample
 
-This repo contains a sample Microsoft Entra Verified ID application. The application is running at [friends.findy.fi](https://friends.findy.fi)
+This repo contains a sample Microsoft Entra Verified ID application. The application is running at [friend.findy.fi](https://friend.findy.fi)
 
 It is forked from https://github.com/Azure-Samples/active-directory-verifiable-credentials-node and modified to enable issuing and verifying of "Friend Credentials".
 
