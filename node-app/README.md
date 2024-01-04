@@ -23,9 +23,9 @@ npm run
 1. Open the app in your browser. (Our version can be found at [friend.findy.fi](https://friend.findy.fi/).)
 2. Select `Get credential`
 3. Send a photo of yourself or take a selfie. Click `Issue Credential`.
-3. In Authenticator, scan the QR code and submit the attached PIN code.
+4. In Authenticator, scan the QR code and submit the attached PIN code.
 > If this is the first time you are using Verifiable Credentials the Credentials page with the Scan QR button is hidden. You can use the `Add account` button. Select `other` and scan the QR code, this will enable the preview of Verifiable Credentials in Authenticator.
-4. Select `Add`.
+5. Select `Add`.
 
 ## Verifying the verifiable credential
 1. Navigate back to the main page (or re-open [friend.findy.fi](https://friend.findy.fi/)) in your browser and select `Show credential`
