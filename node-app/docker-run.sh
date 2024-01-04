@@ -13,4 +13,4 @@ docker run --rm -it -p 8080:8080 \
  -e issuancePinCodeLength=4 \
  -e sourcePhotoClaimName= \
  -e matchConfidenceThreshold=70 \
-  friends-of-findy:latest  
+  friend-of-findy:latest  

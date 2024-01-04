@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t friends-of-findy .
+docker build -t friend-of-findy .
