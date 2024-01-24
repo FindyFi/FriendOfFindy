@@ -38,6 +38,8 @@ var config = {
 };
 if (!config.azTenantId) {
   // local install
+  console.log('Local installation. Reading config from config.json.');
+  console.log(config);
   var configFile = './config.json';
   if ( configFile ) {
     config = require( configFile );
