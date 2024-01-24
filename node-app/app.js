@@ -34,7 +34,8 @@ var config = {
   CredentialType: process.env.CredentialType,
   issuancePinCodeLength: process.env.issuancePinCodeLength,
   sourcePhotoClaimName: process.env.photoClaimName,
-  matchConfidenceThreshold: process.env.matchConfidenceThreshold
+  matchConfidenceThreshold: process.env.matchConfidenceThreshold,
+  dbFile: process.env.dbFile
 };
 if (!config.azTenantId) {
   // local install
