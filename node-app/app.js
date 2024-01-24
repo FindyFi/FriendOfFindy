@@ -46,6 +46,9 @@ if (!config.azTenantId) {
     config = require( configFile );
   }  
 }
+if (!config.dbFile) {
+  config.dbFile = './sequence.db';
+}
 if ( config.issuancePinCodeLength ) {
   config.issuancePinCodeLength = parseInt( config.issuancePinCodeLength );
 }
