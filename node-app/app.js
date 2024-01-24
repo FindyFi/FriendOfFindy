@@ -49,7 +49,7 @@ if (!config.azTenantId) {
 if ( config.issuancePinCodeLength ) {
   config.issuancePinCodeLength = parseInt( config.issuancePinCodeLength );
 }
-// console.log(config);
+console.log(config);
 if (!config.azTenantId) {
   throw new Error('azTenantId is missing in the config.')
 }

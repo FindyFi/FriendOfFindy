@@ -21,6 +21,8 @@ var mainApp = require('./app.js');
 
 var parser = bodyParser.urlencoded({ extended: false });
 
+console.log(mainApp.config)
+
 // init DB
 let db = new sqlite3.Database(mainApp.config.dbFile, (err) => {
   if (err) {
