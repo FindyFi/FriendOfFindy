@@ -24,14 +24,14 @@
             },
             "defaultValue": "main"
         },
-		"Project": {
-			"type": "string",
-			"metadata": {
-				"description": "Github repo subfolder"
-			},
-			"defaultValue": "node-app"
-		},
-		"azTenantId": {
+        "Project": {
+            "type": "string",
+            "metadata": {
+                "description": "Github repo subfolder"
+            },
+            "defaultValue": "node-app"
+        },
+        "azTenantId": {
             "type": "string",
             "metadata": {
                 "description": "Entra ID Tenant id"
@@ -76,9 +76,16 @@
         "PhotoClaimName": {
             "type": "string",
             "metadata": {
-              "description": "claim name for photo - if you are using FaceCheck during presentation. Otherwise leave this field blank"
+              "description": "Claim name for photo - if you are using FaceCheck during presentation. Otherwise leave this field blank"
             },
             "defaultValue": "photo"
+        },
+        "dbFile": {
+            "type": "string",
+            "metadata": {
+              "description": "File name for sqlite database"
+            },
+            "defaultValue": "./sequence.db"
         }
     },
     "variables": {
@@ -164,7 +171,7 @@
                             "name": "DEPLOYMENT_SOURCE",
                             "value": "[Concat('/home/site/repository/', parameters('Project'))]"
                         },
-						{
+                        {
                             "name": "azTenantId",
                             "value": "[parameters('azTenantId')]"
                         },
@@ -277,7 +284,7 @@
                 "linuxFxVersion": "[variables('linuxFxVersion')]",
                 "requestTracingEnabled": false,
                 "remoteDebuggingEnabled": false,
-            	"remoteDebuggingVersion": "VS2019",
+                "remoteDebuggingVersion": "VS2019",
                 "httpLoggingEnabled": true,
                 "acrUseManagedIdentityCreds": false,
                 "logsDirectorySizeLimit": 100,
