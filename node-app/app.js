@@ -21,19 +21,32 @@ const crypto = require('crypto');
 var uuid = require('uuid');
 
 console.time("startup");
-var configFile = './config.json';
-if ( configFile ) {
-  config = require( configFile );
-}
-if ( !config.azCertificateName ) {
-  config.azCertificateName = "";
-} else {
-  config.azCertificateName = (config.azCertificateName.startsWith("<") ? "" : config.azCertificateName);
+var config = {
+  azTenantId : process.env.azTenantId,
+  azClientId : process.env.azClientId,
+  azClientSecret: process.env.azClientSecret,
+  azCertificateName:  process.env.azCertificateName,
+  azCertThumbprint:  process.env.azCertThumbprint,
+  azCertificatePrivateKeyLocation:  process.env.azCertificatePrivateKeyLocation,
+  CredentialManifest: process.env.CredentialManifest,
+  DidAuthority: process.env.DidAuthority,
+  acceptedIssuers: process.env.acceptedIssuers,
+  CredentialType: process.env.CredentialType,
+  issuancePinCodeLength: process.env.issuancePinCodeLength,
+  sourcePhotoClaimName: process.env.photoClaimName,
+  matchConfidenceThreshold: process.env.matchConfidenceThreshold
+};
+if (!config.azTenantId) {
+  // local install
+  var configFile = './config.json';
+  if ( configFile ) {
+    config = require( configFile );
+  }  
 }
 if ( config.issuancePinCodeLength ) {
   config.issuancePinCodeLength = parseInt( config.issuancePinCodeLength );
 }
-console.log(config);
+// console.log(config);
 if (!config.azTenantId) {
   throw new Error('azTenantId is missing in the config.')
 }
@@ -89,23 +102,6 @@ var msalConfig = {
   }
 };
 
-// if certificateName is specified in config, then we change the MSAL config to use it
-if ( config.azCertificateName !== '') {
-  const privateKeyData = fs.readFileSync(config.azCertificatePrivateKeyLocation, 'utf8');
-  console.log(config.azCertThumbprint);  
-  const privateKeyObject = crypto.createPrivateKey({ key: privateKeyData, format: 'pem',    
-    passphrase: config.azCertificateName.replace("CN=", "") // the passphrase is the appShortName (see Configure.ps1)    
-  });
-  msalConfig.auth = {
-    clientId: config.azClientId,
-    authority: `https://login.microsoftonline.com/${config.azTenantId}`,
-    clientCertificate: {
-      thumbprint: config.azCertThumbprint,
-      privateKey: privateKeyObject.export({ format: 'pem', type: 'pkcs8' })
-    }
-  };
-}
-
 const cca = new msal.ConfidentialClientApplication(msalConfig);
 const msalClientCredentialRequest = {
   scopes: ["3db474b9-6a0c-4840-96ac-1fceb342124f/.default"],
@@ -122,21 +118,21 @@ if ( !config.msIdentityHostName ) {
     config.msIdentityHostName = "https://verifiedid.did.msidentity.com/v1.0/";
   }
 }
-console.log(`Verified ID endpoint: ${config.msIdentityHostName}`);
+// console.log(`Verified ID endpoint: ${config.msIdentityHostName}`);
 ///////////////////////////////////////////////////////////////////////////////////////
 // check that we a) can acquire an access_token and b) that it has the needed permission for this sample
 cca.acquireTokenByClientCredential(msalClientCredentialRequest).then((result) => {
   if ( !result.accessToken ) {
     throw new Error( `Could not acquire access token. Check your configuration for tenant ${config.azTenantId} and clientId ${config.azClientId}` );
   } else {
-    console.log( `access_token: ${result.accessToken}` ); 
+    // console.log( `access_token: ${result.accessToken}` );
     var accessToken = JSON.parse(base64url.decode(result.accessToken.split(".")[1]));
     if ( accessToken.roles != "VerifiableCredential.Create.All" ) {
       throw new Error( `Access token do not have the required scope 'VerifiableCredential.Create.All'.` );  
     }
   }
 }).catch((error) => {
-    console.log(error);
+    console.error(error);
     throw new Error( `Could not acquire access token. Check your configuration for tenant ${config.azTenantId} and clientId ${config.azClientId}` );
   });
 
@@ -145,7 +141,7 @@ cca.acquireTokenByClientCredential(msalClientCredentialRequest).then((result) =>
 fetch( `https://login.microsoftonline.com/${config.azTenantId}/v2.0/.well-known/openid-configuration`, { method: 'GET'} )
 .then(res => res.json())
 .then((resp) => {
-  console.log( `tenant_region_scope = ${resp.tenant_region_scope}`);
+  // console.log( `tenant_region_scope = ${resp.tenant_region_scope}`);
   config.tenant_region_scope = resp.tenant_region_scope;
   // Check that the Credential Manifest URL is in the same tenant Region and throw an error if it's not
   if ( config.CredentialManifest && !config.msIdentityHostName.startsWith("https://dev.did.msidentity.com/v1.0/") && !config.CredentialManifest.startsWith(config.msIdentityHostName) ) {
