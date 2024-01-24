@@ -210,6 +210,10 @@
                         {
                             "name": "matchConfidenceThreshold",
                             "value": "70"
+                        },
+                        {
+                            "name": "dbFile",
+                            "value": "[parameters('dbFile')]"
                         }                        
                     ]
                 },
