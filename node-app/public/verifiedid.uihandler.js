@@ -91,8 +91,9 @@ function uploadImage(e) {
             imageObj.src = e.target.result;
             imageObj.onload = function (ev) {
                 var canvas = document.createElement("canvas");
-                canvas.width = 480;
+                var ratio = imageObj.naturalWidth / imageObj.naturalHeight
                 canvas.height = 640;
+                canvas.width = canvas.height * ratio;
                 console.log(`img size: ${imageObj.naturalWidth} x ${imageObj.naturalHeight}`);
                 canvas.getContext('2d').drawImage(imageObj, 0, 0, imageObj.naturalWidth, imageObj.naturalHeight, 0, 0, canvas.width, canvas.height);
                 document.getElementById("selfie").src = canvas.toDataURL('image/jpeg');
