@@ -71,7 +71,7 @@
                         // if the manifest has a claim with type image/jp[e]g, then we should support adding a photo
                         if (message.includes("image/jp")) {
                             havePhotoClaim = true;
-                            // document.getElementById("take-selfie").style.display = "";
+                            document.getElementById("take-selfie").style.display = "";
                             document.getElementById("imageUpload").style.display = "";
                             document.getElementById("photo-help").style.display = "";
                         }
@@ -91,6 +91,7 @@
                     console.log('creating Selfie request');
                     document.getElementById("selfie").src = "";
                     document.getElementById("selfie").style.display = "none";
+                    document.getElementById("take-selfie").style.display = "none";
                     document.getElementById("imageUpload").style.display = "none";
                     requestService.createSelfieRequest();
                     console.log('created Selfie request');
