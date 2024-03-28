@@ -28,6 +28,7 @@ function RequestService(onDrawQRCode, onNavigateToDeepLink, onRequestRetrieved, 
 
     // function to create a presentation request
     this.createRequest = async function (url) {
+        console.log(`Getting ${url}...`)
         const response = await fetch(url, {method: 'GET', headers: { 'Accept': 'application/json', 'rsid': this.uuid } });
         const respJson = await response.json();
         console.log(respJson);
@@ -116,9 +117,9 @@ function RequestService(onDrawQRCode, onNavigateToDeepLink, onRequestRetrieved, 
           method: 'POST',
           body: base64Image
         }
-        console.log(this.apiSetPhoto, fetchOpts)
+        console.log(this.apiSetPhoto, fetchOpts);
         const response = await fetch(this.apiSetPhoto, fetchOpts);
-
+        document.getElementById('issue-credential').disabled = false;
         const respJson = await response.json().catch(async e => {
             console.error(e)
         });

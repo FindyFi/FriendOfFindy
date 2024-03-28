@@ -337,5 +337,6 @@ mainApp.app.get('/api/issuer/selfie-request', async (req, res) => {
     status: "request_created",
     expiry: parseInt(Date.now() / 1000 + (60*5))
   };
+  console.log(JSON.stringify(resp, null, 1))
   res.status(200).json(resp);   
 })
