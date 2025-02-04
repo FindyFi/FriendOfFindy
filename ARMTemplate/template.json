@@ -90,7 +90,7 @@
     },
     "variables": {
         "appServicePlanPortalName": "[concat(parameters('webAppName'), '-plan')]",
-        "linuxFxVersion": "NODE|18-lts"
+        "linuxFxVersion": "NODE|22"
     },
     "resources": [
         {
@@ -288,7 +288,7 @@
                 "linuxFxVersion": "[variables('linuxFxVersion')]",
                 "requestTracingEnabled": false,
                 "remoteDebuggingEnabled": false,
-                "remoteDebuggingVersion": "VS2019",
+                "remoteDebuggingVersion": "VS2022",
                 "httpLoggingEnabled": true,
                 "acrUseManagedIdentityCreds": false,
                 "logsDirectorySizeLimit": 100,
