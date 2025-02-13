@@ -43,7 +43,7 @@
             "metadata": {
                 "description": "azClientId"
             },
-            "defaultValue": "<azClientId>"
+            "defaultValue": "3dc40f54-77b2-4a31-8020-786e2a53841c"
         },
         "azClientSecret": {
             "type": "string",
